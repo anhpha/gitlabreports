@@ -1,0 +1,10 @@
+ version: '2'
+ services:
+   gitreports-web:
+     build: .
+    #  image: jinn/backend-web
+     container_name: gitreports-web
+     volumes:
+      - .:/var/www
+     ports:
+      - "90:80"

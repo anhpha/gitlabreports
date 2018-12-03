@@ -58,8 +58,8 @@
                 <md-tooltip md-direction="bottom">Print</md-tooltip>
                 <i class="material-icons">print</i>
             </md-button>
-            <md-button class="md-icon-button downloadpdf" aria-label="Download">
-                <md-tooltip md-direction="bottom">PDF Download</md-tooltip>
+            <md-button class="md-icon-button downloadpdf" aria-label="Download" ng-click="exportExcel('#table')">
+                <md-tooltip md-direction="bottom">Xlsx Download</md-tooltip>
                 <i class="material-icons">file_download</i>
             </md-button>
             <md-button class="md-icon-button" aria-label="Logout" ng-click="logout()">

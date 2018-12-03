@@ -76,6 +76,7 @@
             per_page: 100,
             access_token: params.access_token,
             page: params.page,
+            state: params.state,
           },
           function(issues, getHeaders) {
             $scope.pagingInfo = {

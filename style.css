@@ -398,7 +398,7 @@ h5, h4 {
 }*/
 
 .ac-container input {
-    display: none;
+    /* display: none; */
 }
 
 .ac-container .ac-small {

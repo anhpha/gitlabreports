@@ -13,6 +13,16 @@
           },
         }
       ),
+      users: $resource(
+        "https://gitlab.jinn.vn/api/v4/users?per_page=:per_page",
+        { per_page: 100 },
+        {
+          query: {
+            method: "GET",
+            isArray: true,
+          },
+        }
+      ),
       issues_time_stats: $resource(
         "https://gitlab.jinn.vn/api/v4/projects/:id/issues/:issue_iid/time_stats",
         {},

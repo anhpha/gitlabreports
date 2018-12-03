@@ -140,7 +140,7 @@
                                 {{ issue.title }}
                             </td>
                             <td data-th="Date" ng-show="$root.table_columns.indexOf('created_at') >= 0" data-title="taskcreated">
-                                {{ issue.created_at | date:'yyyy-MM-dd' }}
+                                {{ issue.closed_at | date:'yyyy-MM-dd HH:mm' }}
                             </td>
                             <td data-th="Author" ng-show="$root.table_columns.indexOf('author') >= 0">
                                 {{ issue.author.name }}
@@ -148,14 +148,16 @@
                             <td data-th="Assignee" ng-show="$root.table_columns.indexOf('assignee') >= 0">
                                 {{ issue.assignee.name }}
                             </td>
-                            <td data-th="Time Estimate" ng-show="$root.table_columns.indexOf('time_estimate') >= 0" ng-init="stats = getIssuesTimeStats(issue.project_id, issue.iid)"
+                            <td data-th="Time Estimate" ng-show="$root.table_columns.indexOf('time_estimate') >= 0" ng-init="stats = issue.time_stats"
                                 data-title="taskestimate">
-                                <span ng-hide="stats.time_estimate">Unspecified</span>
-                                <span ng-show="stats.time_estimate">{{ stats.human_time_estimate }}</span>
+                                <!-- <span ng-hide="stats.time_estimate">{{ stats.time_estimate }}</span>
+                                <span ng-show="stats.time_estimate">{{ stats.human_time_estimate }}</span> -->
+                                <span ng-show="stats.time_estimate">{{ stats.time_estimate }}</span>
                             </td>
                             <td data-th="Time Spent" ng-show="$root.table_columns.indexOf('total_time_spent') >= 0" date-title="timespent">
-                                <span ng-hide="stats.total_time_spent">Unspecified</span>
-                                <span ng-show="stats.total_time_spent">{{ stats.human_total_time_spent }}</span>
+                                <!-- <span ng-hide="stats.total_time_spent">{{ stats.total_time_spent }}</span>
+                                <span ng-show="stats.total_time_spent">{{ stats.human_total_time_spent }}</span> -->
+                                <span ng-show="stats.total_time_spent">{{ stats.total_time_spent }}</span>
                             </td>
                         </tr>
                     </tbody>
@@ -203,7 +205,21 @@
                                                 <md-option ng-value="p" ng-repeat="p in projects">{{ p.name }}</md-option>
                                             </md-select>
                                         </div>
-                                        <div flex ng-show="project_milestones.length">
+                                        <div flex>
+                                            <md-select ng-model="user" placeholder="Assignee" requried>
+                                                <md-option ng-value="u" ng-repeat="u in users">{{ u.name }}</md-option>
+                                            </md-select>
+                                        </div>
+                                        <div flex>
+                                            <span>From</span>
+                                            <md-datepicker ng-model="from" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
+                                        </div>
+
+                                        <div flex>
+                                            <span>To</span>
+                                            <md-datepicker ng-model="to" md-placeholder="Enter date" md-open-on-focus></md-datepicker>
+                                        </div>
+                                        <!-- <div flex ng-show="project_milestones.length">
                                             <md-select ng-model="milestone" placeholder="Milestone">
                                                 <md-option ng-value="m" ng-repeat="m in project_milestones">{{ m.title }}
                                                 </md-option>
@@ -214,7 +230,7 @@
                                                 <md-option ng-value="l" ng-repeat="l in project_labels">{{ l.name }}
                                                 </md-option>
                                             </md-select>
-                                        </div>
+                                        </div> -->
                                         <div flex ng-show="project">
                                             <md-select ng-model="state" placeholder="State">
                                                 <md-option value="opened">Opened</md-option>
